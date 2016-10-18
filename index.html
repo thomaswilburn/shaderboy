@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Shaderboy</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="panels">
+      <section id="edit" class="active">
+        <textarea class="editor">
+void main() {
+  vec2 pixel = gl_FragCoord.xy / resolution;
+  float shade = fract(
+    sin(pixel.x + time * .53243) * 
+    327593.8649089085 * 
+    cos(pixel.y + time * .3215)
+  );
+  gl_FragColor = vec4(shade, shade, shade, 1) * 
+    vec4(1, 1, .8, 1);
+}
+        </textarea>
+      </section>
+      <section id="run">
+        <canvas id="canvas"></canvas>
+      </section>
+      <section id="ref">
+      </section>
+    </main>
+    
+    <div class="tabs">
+      <a href="#edit">Edit</a>
+      <a href="#run">Run</a>
+      <a href="#ref">Ref</a>
+    </div>
+    <script src="./lib/ace.js"></script>
+    <script src="./renderer.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
