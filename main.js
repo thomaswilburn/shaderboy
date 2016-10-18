@@ -2,7 +2,9 @@
 var editor = ace.edit(document.querySelector("textarea"));
 editor.session.setMode("ace/mode/glsl");
 editor.setOptions({
-  showGutter: false,
+  showLineNumbers: false,
+  tabSize: 2,
+  showPrintMargin: false,
   wrap: true
 });
 
@@ -12,7 +14,7 @@ editor.setOptions({
   //add single-step and play modes
   //add reference materials
 
-document.querySelector(".tabs").addEventListener("click", function(e) {
+document.querySelector(".modes").addEventListener("click", function(e) {
   var href = e.target.getAttribute("href");
   if (!href) return;
   switch (href) {

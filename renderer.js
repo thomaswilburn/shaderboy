@@ -11,26 +11,26 @@
     
     var vertex = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertex, `
-      precision highp float;
-      
-      attribute vec2 a_position;
-      
-      void main() {
-        gl_Position = vec4(a_position, 0, 0);
-      }
+precision highp float;
+
+attribute vec2 a_position;
+
+void main() {
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}
     `);
     gl.compileShader(vertex);
     crash("vertex", gl.getShaderInfoLog(vertex));
     
     var fragment = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragment, `
-      precision highp float;
-      
-      uniform vec2 resolution;
-      uniform float time;
-      uniform vec2 cursor;
-      
-      ${fragmentSource}
+precision highp float;
+
+uniform vec2 resolution;
+uniform float time;
+uniform vec2 cursor;
+
+${fragmentSource}
     `);
     gl.compileShader(fragment);
     crash("fragment", gl.getShaderInfoLog(fragment));
