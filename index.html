@@ -6,27 +6,30 @@
     <title>Shaderboy</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body data-mode="edit">
     <div class="splash">
     
     </div>
     
     <main class="panels">
-      <section id="edit" class="active">
+      <section id="edit">
         <textarea class="editor">
 // Welcome to Shaderboy!
 // Available uniforms: resolution, time, pointer
 
 void main() {
-  vec2 pixel = gl_FragCoord.xy / resolution;
-  float xFactor = fract(gl_FragCoord.x * pixel.y + pixel.x);
-  float yFactor = fract(gl_FragCoord.y * pixel.x + pixel.y);
-  float shade = fract(
-    sin(xFactor + time * .53243) * 
-    327593.8649089085 * 
-    cos(xFactor + time * .3215)
+  vec3 movement = vec3(
+    sin(time / 1000.0) * 20.0,
+    sin(time / 732.0) * 16.0,
+    cos(time / 1235.2) * 23.5
   );
-  gl_FragColor = vec4(shade, shade, shade, 1) * vec4(1, 1, .8, 1);
+  float r = sin((gl_FragCoord.x + movement.r) / 10.0) + 
+    cos((gl_FragCoord.y + movement.b) / 10.0);
+  float g = sin((gl_FragCoord.x + movement.g) / 50.0) + 
+    cos((gl_FragCoord.y + movement.b) / 50.0);
+  float b = sin((gl_FragCoord.x + movement.b) / 23.0) + 
+    cos((gl_FragCoord.y + movement.g) / 23.0);
+  gl_FragColor = vec4(r, g, b, 1);
 }</textarea>
       </section>
       

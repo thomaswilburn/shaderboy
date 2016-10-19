@@ -1,4 +1,12 @@
 
+var closest = (e, s) => {
+  while (!e.matches(s) && e !== document.body) {
+    e = e.parentElement;
+  }
+  if (e == document.body) return null;
+  return e;
+}
+
 var editor = ace.edit(document.querySelector("textarea"));
 editor.session.setMode("ace/mode/glsl");
 editor.setOptions({
@@ -15,17 +23,20 @@ editor.setOptions({
   //add reference materials
 
 document.querySelector(".modes").addEventListener("click", function(e) {
-  var href = e.target.getAttribute("href");
+  var a = closest(e.target, "[href]") || e.target;
+  var href = a.getAttribute("href");
   if (!href) return;
+  document.body.setAttribute("data-mode", href.replace(/^#/, ""));
+  
   switch (href) {
     case "#edit":
-      editor.resize();
       renderer.pause();
+      editor.resize();
+      editor.focus();
       break;
       
     case "#run":
       var code = editor.getValue();
-      console.log(code);
       try {
         renderer.compile(code);
         renderer.play();
@@ -35,6 +46,4 @@ document.querySelector(".modes").addEventListener("click", function(e) {
       break;
   }
   
-  document.querySelector("section.active").classList.remove("active");
-  document.querySelector(href).classList.add("active");
 });

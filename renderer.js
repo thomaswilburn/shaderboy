@@ -23,15 +23,16 @@ void main() {
     crash("vertex", gl.getShaderInfoLog(vertex));
     
     var fragment = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(fragment, `
+    var source = state.source = `
 precision highp float;
 
 uniform vec2 resolution;
 uniform float time;
 uniform vec2 cursor;
 
-${fragmentSource}
-    `);
+//SHADERSTART
+${fragmentSource}`;
+    gl.shaderSource(fragment, source);
     gl.compileShader(fragment);
     crash("fragment", gl.getShaderInfoLog(fragment));
     
