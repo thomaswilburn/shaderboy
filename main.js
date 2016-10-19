@@ -27,14 +27,14 @@ document.querySelector(".modes").addEventListener("click", function(e) {
   var href = a.getAttribute("href");
   if (!href) return;
   document.body.setAttribute("data-mode", href.replace(/^#/, ""));
-  
+
   switch (href) {
     case "#edit":
       renderer.pause();
       editor.resize();
       editor.focus();
       break;
-      
+
     case "#run":
       var code = editor.getValue();
       try {
@@ -45,5 +45,11 @@ document.querySelector(".modes").addEventListener("click", function(e) {
       }
       break;
   }
-  
+
 });
+
+//register for offline
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}

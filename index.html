@@ -8,14 +8,14 @@
   </head>
   <body data-mode="edit">
     <div class="splash">
-    
+
     </div>
-    
+
     <main class="panels">
       <section id="edit">
         <textarea class="editor">
 // Welcome to Shaderboy!
-// Available uniforms: resolution, time, pointer
+// Available uniforms: resolution, time
 
 void main() {
   vec3 movement = vec3(
@@ -23,29 +23,29 @@ void main() {
     sin(time / 732.0) * 16.0,
     cos(time / 1235.2) * 23.5
   );
-  float r = sin((gl_FragCoord.x + movement.r) / 10.0) + 
+  float r = sin((gl_FragCoord.x + movement.r) / 10.0) +
     cos((gl_FragCoord.y + movement.b) / 10.0);
-  float g = sin((gl_FragCoord.x + movement.g) / 50.0) + 
+  float g = sin((gl_FragCoord.x + movement.g) / 50.0) +
     cos((gl_FragCoord.y + movement.b) / 50.0);
-  float b = sin((gl_FragCoord.x + movement.b) / 23.0) + 
+  float b = sin((gl_FragCoord.x + movement.b) / 23.0) +
     cos((gl_FragCoord.y + movement.g) / 23.0);
   gl_FragColor = vec4(r, g, b, 1);
 }</textarea>
       </section>
-      
+
       <section id="run">
         <canvas id="canvas"></canvas>
       </section>
-      
+
       <section id="info">
       </section>
-      
+
       <nav class="modes">
         <a href="#run"><img src="./icons/ic_blur_on_black_24px.svg"></a>
         <a href="#edit"><img src="./icons/ic_code_black_24px.svg"></a>
         <a href="#info"><img src="./icons/ic_extension_black_24px.svg"></a>
       </nav>
-      
+
     </main>
     <script src="./lib/ace.js"></script>
     <script src="./renderer.js"></script>

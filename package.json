@@ -8,11 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "codemirror": "^5.19.0"
-  },
-  "devDependencies": {
-    "rollup": "^0.36.3"
-  }
+  "license": "GPL-3.0"
 }
